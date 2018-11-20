@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.zane.androidupnpdemo"
-        minSdkVersion 14
-        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,8 +16,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/beans.xml'
@@ -26,20 +23,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support.constraint:constraint-layout:$supportConstraintLayoutVersion"
     // Cling library
-    compile 'org.fourthline.cling:cling-core:2.1.1'
-    compile 'org.fourthline.cling:cling-support:2.1.1'
+    implementation 'org.fourthline.cling:cling-core:2.1.1'
+    implementation 'org.fourthline.cling:cling-support:2.1.1'
     // Jetty library
-    compile 'org.eclipse.jetty:jetty-server:8.1.12.v20130726'
-    compile 'org.eclipse.jetty:jetty-servlet:8.1.12.v20130726'
-    compile 'org.eclipse.jetty:jetty-client:8.1.12.v20130726'
-    compile 'org.slf4j:slf4j-simple:1.7.21'
-    compile 'com.koushikdutta.urlimageviewhelper:urlimageviewhelper:1.0.4'
+    implementation 'org.eclipse.jetty:jetty-server:8.1.12.v20130726'
+    implementation 'org.eclipse.jetty:jetty-servlet:8.1.12.v20130726'
+    implementation 'org.eclipse.jetty:jetty-client:8.1.12.v20130726'
+    implementation 'org.slf4j:slf4j-simple:1.7.21'
+    implementation 'com.koushikdutta.urlimageviewhelper:urlimageviewhelper:1.0.4'
 }
